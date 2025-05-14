@@ -304,10 +304,125 @@ VALUES
 
 
 
+-- READ Operations (SELECT Queries)
+-- Basic Selection
+
+-- Select all columns
+SELECT * FROM courses;
+
+-- Select specific columns
+SELECT first_name,status FROM students;
+
+-- Filter result with WHERE 
+SELECT course_id , student_id , status
+FROM course_tracking
+WHERE status='COMPLETED';
+
+-- Advanced Filtering
+
+-- To select the Distinct values 
+SELECT DISTINCT course_id , status
+FROM course_tracking
+WHERE status='COMPLETED';
+
+SELECT * FROM students 
+WHERE first_name LIKE '%A';
+
+-- SELECT * FROM employees 
+-- WHERE department = 'Sales' OR department = 'HR';
+
+-- OR
+
+SELECT * FROM course_tracking  WHERE status IN('INPROGRESS','COMPLETED');
+
+
+-- SELECT * FROM employees 
+-- WHERE salary >= 40000 AND salary <= 80000;
+
+ -- OR
+ 
+SELECT * FROM courses  WHERE course_fee BETWEEN 12000 AND 15000;
+
+
+SELECT * FROM students WHERE student_id IS NULL;
+
+-- Using  this SELECT we can do Aggregate function , Grouping join etc.. that we will see later.
 
 
 
--- DROP DATABASE edumate;
+
+-- UPDATE OPERATIONS
+
+/*
+UPDATE is a DML command used to modify the existing records (rows) in a table.
+To correct or change information in a row
+To bulk update values based on a condition (e.g., salary hike for all employees in HR)
+
+
+docs - https://docs.google.com/document/d/1bKJQf84Kfszhb99T9ku5iWppJgaQg5MtB6ZCAkIpPzw/edit?tab=t.6tl426ea3ev3
+
+*/
+
+UPDATE courses
+SET course_fee = 15000 
+WHERE course_id=4;
+
+
+
+-- ALTER - for modifying the structure of database , table etc....
+
+-- ADD column
+ALTER  TABLE course_tracking 
+ADD COLUMN boom TEXT NOT NULL;
+
+-- DELETE column
+ALTER TABLE course_tracking 
+DROP COLUMN boom;
+
+-- MODIFY column
+ALTER TABLE course_tracking
+MODIFY COLUMN boom VARCHAR(255);
+
+-- RENAME column
+ALTER TABLE course_tracking
+RENAME COLUMN feedback TO course_feedback;
+
+-- RENAME table
+ALTER TABLE course_tracking 
+RENAME TO courses_tracking;
+
+
+-- ADDING AND DROPPING CONSTRAINTS.
+
+ /*
+-- ADD primary key
+
+ALTER TABLE students 
+ADD PRIMARY KEY (sid);
+
+-- ADD foreign key
+ALTER TABLE orders 
+ADD FOREIGN KEY (customer_id) REFERENCES customers(id);
+
+-- DROP primary key
+ALTER TABLE products 
+DROP PRIMARY KEY;
+
+*/
+-- DELETIONS
+
+-- To delete a SPECIFIC ROWS in table
+DELETE FROM courses_tracking 
+WHERE status='COMPLETED';
+
+-- To delete ALL THE ROWS in the table
+TRUNCATE TABLE courses_tracking;
+
+-- To delete a TABLE
+DROP TABLE courses_tracking;
+
+-- To delete a DATABASE
+ DROP DATABASE edumate;
 
 
 
