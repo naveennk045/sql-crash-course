@@ -82,6 +82,8 @@ Track completion status and feedback
 
 */
 
+-- CREATE 
+
 CREATE DATABASE edumate 
 	CHARACTER SET 'utf8mb4';
     
